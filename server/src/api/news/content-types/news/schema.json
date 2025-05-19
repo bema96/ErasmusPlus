@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "nyheder",
+  "info": {
+    "singularName": "news",
+    "pluralName": "nyheder",
+    "displayName": "Nyheder",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "date": {
+      "type": "date"
+    },
+    "titel": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}

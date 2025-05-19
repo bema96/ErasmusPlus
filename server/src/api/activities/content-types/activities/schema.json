@@ -1,0 +1,48 @@
+{
+  "kind": "collectionType",
+  "collectionName": "aktiviteter",
+  "info": {
+    "singularName": "activities",
+    "pluralName": "aktiviteter",
+    "displayName": "Aktiviteter",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "titel": {
+      "type": "string"
+    },
+    "who": {
+      "type": "string"
+    },
+    "where": {
+      "type": "string"
+    },
+    "period": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "description": {
+      "type": "text"
+    },
+    "location": {
+      "type": "customField",
+      "options": {
+        "info": true
+      },
+      "customField": "plugin::geodata.geojson"
+    }
+  }
+}
