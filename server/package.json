@@ -22,7 +22,6 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0",
-    "strapi-geodata": "^0.1.2",
     "styled-components": "^6.0.0"
   },
   "devDependencies": {
@@ -36,7 +35,7 @@
     "npm": ">=6.0.0"
   },
   "strapi": {
-    "uuid": "f6bd5367-fe0f-48b8-9896-90d663004558",
-    "installId": "a6ac61ee2c8648c36acc1c314968482a97f2141148e42a5d0d72fb4bbceebaf0"
+    "uuid": "4557951c-4dc2-448a-8a3d-c6ec2b0514bd",
+    "installId": "ca5a522b4602d1e2a857be202e5e77569a8d10e7cfcca3f756910292dfd5a142"
   }
 }
