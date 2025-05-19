@@ -1,7 +1,6 @@
 ############################
 # OS X
 ############################
-
 .DS_Store
 .AppleDouble
 .LSOverride
@@ -10,18 +9,14 @@ Icon
 .Trashes
 ._*
 
-
 ############################
 # Linux
 ############################
-
 *~
-
 
 ############################
 # Windows
 ############################
-
 Thumbs.db
 ehthumbs.db
 Desktop.ini
@@ -31,11 +26,9 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 
-
 ############################
 # Packages
 ############################
-
 *.7z
 *.csv
 *.dat
@@ -60,22 +53,21 @@ $RECYCLE.BIN/
 *.out
 *.pid
 
-
 ############################
 # Logs and databases
 ############################
-
-.tmp
 *.log
 *.sql
 *.sqlite
 *.sqlite3
 
 
+.tmp/*
+!.tmp/data.db
+
 ############################
 # Misc.
 ############################
-
 *#
 ssl
 .idea
@@ -88,19 +80,17 @@ public/uploads/*
 ############################
 # Node.js
 ############################
-
 lib-cov
 lcov.info
 pids
 logs
 results
-node_modules
+node_modules/
 .node_history
 
 ############################
 # Package managers
 ############################
-
 .yarn/*
 !.yarn/cache
 !.yarn/unplugged
@@ -114,18 +104,16 @@ yarn-error.log
 ############################
 # Tests
 ############################
-
 coverage
 
 ############################
-# Strapi
+# Strapi specific
 ############################
-
 .env
 license.txt
-exports
-.strapi
-dist
-build
+exports/
+.strapi/
+dist/
+build/
 .strapi-updater.json
 .strapi-cloud.json
