@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
+@import "tailwindcss";
+
+@theme {
+    --primary: #707070;
+    --border: #535353;
+}
+
+body {
+    height: 100vh;
+    overflow: hidden;
+    font-family: "Roboto", sans-serif;
+    color: var(--primary);
+    user-select: none;
+}
+
+#root {
+    height: 100%;
+    padding: 40px;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--border);
+}
+
+.leaflet-control-attribution {
+    display: none !important;
+}
