@@ -1,53 +1,32 @@
 import { NewsItem } from "./NewsItem";
+import { useFetch } from "../hooks/useFetch";
 
 export const News = () => {
+    let { data, loading, error } = useFetch(
+        `${import.meta.env.VITE_API_URL}/api/nyheder?populate=*`
+    );
+
+    data = data?.data;
+
     return (
         <div className="w-1/3 flex flex-col gap-6">
             <h2 className="uppercase text-4xl">Nyheder</h2>
             {/* <NewsList /> */}
             <div className="h-full flex flex-col gap-4 overflow-y-scroll">
-                <NewsItem
-                    title="Nyhed 1"
-                    date="2023-10-01"
-                    image="https://picsum.photos/seed/picsum/300/200"
-                    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                />
-                <NewsItem
-                    title="Nyhed 2"
-                    date="2023-10-02"
-                    image="https://picsum.photos/seed/picsum/300/200"
-                    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                />
-                <NewsItem
-                    title="Nyhed 3"
-                    date="2023-10-03"
-                    image="https://picsum.photos/seed/picsum/300/200"
-                    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                />
-                <NewsItem
-                    title="Nyhed 4"
-                    date="2023-10-04"
-                    image="https://picsum.photos/seed/picsum/300/200"
-                    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                />
-                <NewsItem
-                    title="Nyhed 5"
-                    date="2023-10-05"
-                    image="https://picsum.photos/seed/picsum/300/200"
-                    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                />
-                <NewsItem
-                    title="Nyhed 6"
-                    date="2023-10-06"
-                    image="https://picsum.photos/seed/picsum/300/200"
-                    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                />
-                <NewsItem
-                    title="Nyhed 7"
-                    date="2023-10-07"
-                    image="https://picsum.photos/seed/picsum/300/200"
-                    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. consectetur adipiscing elit. consectetur adipiscing elit."
-                />
+                {loading && <p>Henter Nyheder...</p>}
+                {error && <p>Fejl: {error.message}</p>}
+                {data &&
+                    data.map((news) => (
+                        <NewsItem
+                            key={news.id}
+                            title={news.titel}
+                            date={news.date}
+                            image={`${import.meta.env.VITE_API_URL}${
+                                news.image[0].formats.small.url
+                            }`}
+                            description={news.description}
+                        />
+                    ))}
             </div>
         </div>
     );

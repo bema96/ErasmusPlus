@@ -19,68 +19,40 @@ export const Modal = ({ isOpen, onClose, activity }) => {
                 >
                     <IoCloseSharp />
                 </button>
-
-                <div className="flex gap-7">
-                    <div className="flex flex-col gap-4">
-                        <h2 className="font-medium text-2xl">
-                            Tre forskellige sprog - en kode
-                        </h2>
-                        <div className="flex flex-col gap-2">
-                            <span>
-                                <strong>Hvem:</strong> 10 elever fra webudvikler
-                                uddannelsen
-                            </span>
-                            <span>
-                                <strong>Hvor:</strong> Gran Canaria, Spanien
-                            </span>
-                            <span>
-                                <strong>Periode:</strong> 6. - 20. marts 2023 (2
-                                uger)
-                            </span>
+                {activity !== null && (
+                    <>
+                        <div className="flex gap-7 justify-between">
+                            <div className="flex flex-col gap-4">
+                                <h2 className="font-medium text-2xl">
+                                    {activity.titel}
+                                </h2>
+                                <div className="flex flex-col gap-2">
+                                    <span>
+                                        <strong>Hvem:</strong> {activity.who}
+                                    </span>
+                                    <span>
+                                        <strong>Hvor:</strong> {activity.where}
+                                    </span>
+                                    <span>
+                                        <strong>Periode:</strong>{" "}
+                                        {activity.period}
+                                    </span>
+                                </div>
+                            </div>
+                            <img
+                                className="h-52 object-cover border-2 border-border"
+                                src={`${import.meta.env.VITE_API_URL}${
+                                    activity.image.formats.small.url
+                                }`}
+                                alt=""
+                            />
                         </div>
 
-                        <p>
-                            Lorem ipsum dolor, sit amet consectetur adipisicing
-                            elit. Reiciendis numquam reprehenderit voluptatem
-                            placeat rem culpa. Quisquam ab inventore asperiores
-                            id accusantium, dolor a, non nulla excepturi ullam
-                            ipsum, error adipisci!
+                        <p className="overflow-y-scroll">
+                            {activity.description}
                         </p>
-                    </div>
-                    <img
-                        className="h-52 object-cover border-2 border-border"
-                        src="https://picsum.photos/seed/picsum/300/200"
-                        alt=""
-                    />
-                </div>
-
-                <p className="overflow-y-scroll">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Natus, quod alias debitis ipsum at dolorum. Accusamus optio,
-                    voluptates velit maxime laborum error eligendi natus minus
-                    quam. Asperiores dicta iste qui architecto a excepturi
-                    doloribus. Dignissimos eius debitis excepturi quibusdam,
-                    voluptate culpa iusto aliquam, id, animi quasi amet vel
-                    maiores fugit. Lorem ipsum dolor sit amet consectetur
-                    adipisicing elit. Natus, quod alias debitis ipsum at
-                    dolorum. Accusamus optio, voluptates velit maxime laborum
-                    error eligendi natus minus quam. Asperiores dicta iste qui
-                    architecto a excepturi doloribus. Dignissimos eius debitis
-                    excepturi quibusdam, voluptate culpa iusto aliquam, id,
-                    animi quasi amet vel maiores fugit. Lorem ipsum dolor sit
-                    amet consectetur adipisicing elit. Natus, quod alias debitis
-                    ipsum at dolorum. Accusamus optio, voluptates velit maxime
-                    laborum error eligendi natus minus quam. Asperiores dicta
-                    iste qui architecto a excepturi doloribus. Dignissimos eius
-                    debitis excepturi quibusdam, voluptate culpa iusto aliquam,
-                    id, animi quasi amet vel maiores fugit. Lorem ipsum dolor
-                    sit amet consectetur adipisicing elit. Natus, quod alias
-                    debitis ipsum at dolorum. Accusamus optio, voluptates velit
-                    maxime laborum error eligendi natus minus quam. Asperiores
-                    dicta iste qui architecto a excepturi doloribus. Dignissimos
-                    eius debitis excepturi quibusdam, voluptate culpa iusto
-                    aliquam, id, animi quasi amet vel maiores fugit.
-                </p>
+                    </>
+                )}
             </div>
         </div>
     );

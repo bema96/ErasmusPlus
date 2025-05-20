@@ -5,6 +5,7 @@ import { useState } from "react";
 
 export default function App() {
     const [isOpen, setIsOpen] = useState(false);
+    const [modalData, setModalData] = useState(null);
 
     return (
         <>
@@ -17,11 +18,20 @@ export default function App() {
 
                 <div className="flex-1 flex gap-4 overflow-hidden">
                     <News />
-                    <MapView openModal={() => setIsOpen(true)} />
+                    <MapView
+                        openModal={(data) => {
+                            setModalData(data);
+                            setIsOpen(true);
+                        }}
+                    />
                 </div>
             </main>
 
-            <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} />
+            <Modal
+                isOpen={isOpen}
+                onClose={() => setIsOpen(false)}
+                activity={modalData}
+            />
         </>
     );
 }
