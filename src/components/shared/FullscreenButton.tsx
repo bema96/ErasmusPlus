@@ -8,14 +8,14 @@ export function FullscreenButton({ className = '' }: FullscreenButtonProps) {
   const { isFullscreen, toggleFullscreen, isSupported } = useFullscreen();
 
   if (!isSupported) {
-    return null; // Don't render if fullscreen is not supported
+    return null; 
   }
 
   return (
     <button
       onClick={toggleFullscreen}
       className={`
-        fixed top-4 right-4 z-50 
+        fixed top-6 right-8 z-50 
         bg-white hover:bg-gray-100 
         border-2 border-gray-300 hover:border-gray-400
         rounded-lg shadow-lg hover:shadow-xl

@@ -18,14 +18,11 @@
 }
 
 .activity-description-scroll::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  background: rgba(66, 66, 66, 0.5);
   border-radius: 4px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.activity-description-scroll::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #4f46e5, #7c3aed);
-}
 
 
 :root {

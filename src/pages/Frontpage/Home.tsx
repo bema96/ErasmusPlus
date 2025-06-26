@@ -9,7 +9,7 @@ export const Home = () => {
 
             {/* Header */}
             <div className="border-b-2 border-black">
-              <h1 className="uppercase text-6xl font-bold">
+              <h1 className="uppercase text-6xl font-bold pb-3">
                 Praktik i Udlandet
               </h1>
             </div>
