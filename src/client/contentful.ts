@@ -1,9 +1,18 @@
 import * as contentful from "contentful";
 import { useCallback, useState, useEffect } from 'react';
 
+// Validate environment variables
+const SPACE_ID = import.meta.env.VITE_CONTENTFUL_SPACE;
+const ACCESS_TOKEN = import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN;
+
+if (!SPACE_ID || !ACCESS_TOKEN) {
+  console.error('Contentful environment variables are missing!');
+  console.error('Required: VITE_CONTENTFUL_SPACE and VITE_CONTENTFUL_ACCESS_TOKEN');
+}
+
 export const client = contentful.createClient({
-  space: import.meta.env.VITE_CONTENTFUL_SPACE,
-  accessToken: import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN,
+  space: SPACE_ID || '',
+  accessToken: ACCESS_TOKEN || '',
 });
 
 export function useContentful<type>(contentType: string) {
@@ -12,6 +21,13 @@ export function useContentful<type>(contentType: string) {
   const [error, setError] = useState<string | null>(null);
 
   const fetchData = useCallback(() => {
+    // Check if Contentful is properly configured
+    if (!SPACE_ID || !ACCESS_TOKEN) {
+      setError('Contentful er ikke konfigureret korrekt. Kontakt administratoren.');
+      setLoading(false);
+      return;
+    }
+
     setLoading(true);
     client.getEntries({ 
       content_type: contentType,
@@ -28,8 +44,9 @@ export function useContentful<type>(contentType: string) {
         setLoading(false);
         setError(null);
       })
-      .catch(() => {
-        setError('Fejl ved hentning af data');
+      .catch((err) => {
+        console.error('Contentful fetch error:', err);
+        setError('Fejl ved hentning af data fra Contentful');
         setLoading(false);
       });
   }, [contentType]);
