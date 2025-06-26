@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom scrollbar for activity description */
+.activity-description-scroll {
+  scroll-behavior: smooth;
+}
+
+.activity-description-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.activity-description-scroll::-webkit-scrollbar-track {
+  background: rgba(229, 231, 235, 0.5);
+  border-radius: 4px;
+  margin: 8px 0;
+}
+
+.activity-description-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  border-radius: 4px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.activity-description-scroll::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+}
+
+
+:root {
+height: 100%;
+color: grey;
+
+}
+
+html,
+body {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  padding: 1rem;
+}
+
+body {
+  overflow: hidden;
+  user-select: none;
+}
+
