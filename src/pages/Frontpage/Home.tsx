@@ -8,19 +8,19 @@ export const Home = () => {
   const { t } = useTranslation();
 
   return (
-        <div className="relative flex flex-col justify-center items-center min-h-screen px-4 mt-8">
+        <div className="flex flex-col px-4 mt-8">
 
-            <div className="w-full flex justify-between items-center">
+      
                 {/* Page header with title */}
-                <div className="">
-                <h1 className="uppercase text-6xl font-bold pb-3">
-                    { t('headline') }
-                </h1>
+                <div className="flex float-left">
+                    <h1 className="uppercase text-6xl font-bold pb-3">
+                        { t('headline') }
+                    </h1>
                 </div>
 
-                <div className="absolute right-[200px]">
+                <div className="absolute w-[330px] right-[10px] top-[10px] text-left">
                     {/* Language selector */}
-                    <div className="relative">
+                    <div className="relative left-[20px]">
                         <Language />
                     </div>
 
@@ -29,7 +29,7 @@ export const Home = () => {
                         <p>{ t('author') }</p>
                     </div>
                 </div>
-            </div>
+       
 
             <span className="w-full border-b-2 border-black"></span>
 
