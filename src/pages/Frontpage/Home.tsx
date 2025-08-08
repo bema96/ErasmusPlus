@@ -18,7 +18,7 @@ export const Home = () => {
                     </h1>
                 </div>
 
-                <div className="absolute w-[330px] right-[10px] top-[10px] text-left">
+                <div className="absolute w-[330px] right-[10px] top-[10px] pb-1 text-left">
                     {/* Language selector */}
                     <div className="relative left-[20px] mb-2">
                         <Language />
@@ -48,7 +48,7 @@ export const Home = () => {
 
                 {/* Right side - World map section */}
                 <section className="map-section w-full h-screen flex justify-center">
-                    <div style={{ height:'85%', width: '100%' }}>
+                    <div style={{ height:'87%', width: '100%' }}>
                         <MapView />
                     </div>
                 </section>
