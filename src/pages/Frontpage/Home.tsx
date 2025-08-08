@@ -8,7 +8,7 @@ export const Home = () => {
   const { t } = useTranslation();
 
   return (
-        <div className="p-5 pt-10">
+        <div className="p-5 pt-[100px]">
 
             {/* Page header with title */}
             <div className="border-b-2 border-black">
@@ -23,7 +23,7 @@ export const Home = () => {
             </div>
 
             {/* Author information - below language selector */}
-            <div className="inline-block absolute right-1 top-[80px] w-[330px] text-left">
+            <div className="inline-block absolute right-1 top-[130px] w-[330px] text-left">
                 <p>{ t('author') }</p>
             </div>
 
