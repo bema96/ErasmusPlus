@@ -11,4 +11,14 @@ export default defineConfig({
       plugins: [tailwindcss, autoprefixer],
     },
   },
+  server: {
+    // Fjern cookie restrictions i development
+    proxy: {
+      '/api': {
+        target: 'https://cdn.contentful.com',
+        changeOrigin: true,
+        secure: false
+      }
+    }
+  }
 })

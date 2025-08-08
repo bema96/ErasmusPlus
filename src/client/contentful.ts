@@ -8,37 +8,37 @@ export const client = contentful.createClient({
   accessToken: import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN || '',
 });
 
-// Hook to fetch data from Contentful
+// Custom hook to fetch data from Contentful CMS
 export function useContentful<T>(contentType: string) {
-  // State to hold data, loading and error
+  // State to hold our data, loading status, and any errors
   const [data, setData] = useState<T[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Function to fetch data (reusable)
+  // Function to get data from Contentful
   const fetchData = useCallback(() => {
-    // Start loading
-    setLoading(true);
+    // Clear any previous errors
     setError(null);
+    // Show loading spinner
+    setLoading(true);
 
-    // Get current language
-    const currentLanguage = getLanguage();
-
-    // Fetch data from Contentful with language
+    // Get entries from Contentful
     client.getEntries({ 
       content_type: contentType,
-      locale: currentLanguage  // Use language from localStorage
+      locale: getLanguage() // Get current language (da or en)
     })
       .then((response) => {
-        // Convert Contentful data to simple format
+        // Transform Contentful data to our format
         const items = response.items.map((item: any) => {
+          // Get image if it exists
           const imageField = item.fields.image;
-
+          
           return {
             id: item.sys.id,
-            ...item.fields,
+            ...item.fields, // Spread all other fields
+            // Create optimized image URL or null if no image
             image: imageField?.fields?.file?.url
-              ? `https:${imageField.fields.file.url}`
+              ? `https:${imageField.fields.file.url}?w=800&h=600&fit=fill&q=80&fm=webp`
               : null,
           };
         });
@@ -48,19 +48,24 @@ export function useContentful<T>(contentType: string) {
         setLoading(false);
       })
       .catch((err) => {
-        // If there's an error
-        console.error('Error:', err);
-        setError('Could not fetch data');
+        // If something went wrong
+        console.error('Contentful fetch error:', err);
+        setError('Could not load data');
         setLoading(false);
       });
-  }, [contentType]); // Dependencies for useCallback
+  }, [contentType]); // Only recreate if contentType changes
 
-  // Fetch data when component loads
+  // Fetch data when component first loads
   useEffect(() => {
     fetchData();
   }, [fetchData]);
 
-  // Return data, loading state, error and refetch function
-  return { data, loading, error, refetch: fetchData };
+  // Return data and functions that components can use
+  return { 
+    data,        // The actual data array
+    loading,     // True when fetching data
+    error,       // Error message if something failed
+    refetch: fetchData  // Function to manually refresh data
+  };
 }
 
