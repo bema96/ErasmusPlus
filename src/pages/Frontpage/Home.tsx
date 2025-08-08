@@ -8,7 +8,7 @@ export const Home = () => {
   const { t } = useTranslation();
 
   return (
-        <div>
+        <div className="p-5 pt-10">
             {/* Page header with title */}
             <div className="border-b-2 border-black">
               <h1 className="uppercase text-6xl font-bold pb-3">
@@ -17,12 +17,12 @@ export const Home = () => {
             </div>
 
             {/* Language selector - top right */}
-            <div className="flex absolute right-[200px] top-5 w-[130px] text-left">
+            <div className="flex absolute right-[200px] top-[40px] w-[130px] text-left">
                 <Language />
             </div>
 
             {/* Author information - below language selector */}
-            <div className="inline-block absolute right-0 top-[60px] w-[330px] text-left">
+            <div className="inline-block absolute right-1 top-[80px] w-[330px] text-left">
                 <p>{ t('author') }</p>
             </div>
 
@@ -31,7 +31,7 @@ export const Home = () => {
             <div className="home-page flex h-screen w-full pt-5">
 
                 {/* Left side - News section */}
-                <section className="news-section h-[82%] w-[800px] min-w-[350px]">
+                <section className="news-section h-[85%] w-[800px] min-w-[350px]">
                     <h2 className="text-2xl font-bold mb-3 pl-5 uppercase"
                     >
                     { t('news') }
