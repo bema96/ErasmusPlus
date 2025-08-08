@@ -14,7 +14,7 @@ export function FullscreenButton({ className = '' }: FullscreenButtonProps) {
     <button
       onClick={toggleFullscreen}
       className={`
-        fixed top-7 right-8 z-[9999]
+        fixed top-5 right-8 z-[9999]
         bg-white hover:bg-gray-100 
         border-2 border-gray-100 hover:border-gray-400
         rounded-lg hover:shadow-xl
@@ -26,7 +26,7 @@ export function FullscreenButton({ className = '' }: FullscreenButtonProps) {
       {isFullscreen ? (
         // Exit fullscreen icon (X)
         <svg
-          className="w-4 h-4 text-gray-700"
+          className="w-4 h-4 text-gray-300"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"

@@ -5,12 +5,13 @@
 /* Global styles */
 :root {
   height: 100%;
-  color: #6b7280; /* gray-500 */
+  color: #6b7280;
+  --vh: 100%;
 }
 
 html,
 body {
-  height: 100vh;
+  height: 100%;
   margin: 0;
 }
 
