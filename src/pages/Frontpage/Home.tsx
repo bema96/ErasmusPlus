@@ -13,7 +13,7 @@ export const Home = () => {
       
                 {/* Page header with title */}
                 <div className="flex float-left">
-                    <h1 className="uppercase text-6xl font-bold pb-3">
+                    <h1 className="uppercase text-6xl font-bold pb-3 m-0">
                         { t('headline') }
                     </h1>
                 </div>
@@ -25,7 +25,7 @@ export const Home = () => {
                     </div>
 
                     {/* Author information */}
-                    <div className="relative">
+                    <div className="relative m-0">
                         <p>{ t('author') }</p>
                     </div>
                 </div>
