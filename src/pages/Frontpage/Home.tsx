@@ -8,7 +8,7 @@ export const Home = () => {
   const { t } = useTranslation();
 
   return (
-        <div className="flex flex-col px-4 mt-[40px]">
+        <div className="flex flex-col px-4 mt-[30px]">
 
       
                 {/* Page header with title */}
@@ -20,7 +20,7 @@ export const Home = () => {
 
                 <div className="absolute w-[330px] right-[10px] top-[10px] text-left">
                     {/* Language selector */}
-                    <div className="relative left-[20px]">
+                    <div className="relative left-[20px] mb-2">
                         <Language />
                     </div>
 
