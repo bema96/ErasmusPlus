@@ -9,9 +9,10 @@ export const Home = () => {
 
   return (
         <div className="p-5 pt-10">
+
             {/* Page header with title */}
             <div className="border-b-2 border-black">
-              <h1 className="uppercase text-6xl font-bold pb-3">
+              <h1 className="uppercase text-6xl font-bold">
                 { t('headline') }
               </h1>
             </div>
