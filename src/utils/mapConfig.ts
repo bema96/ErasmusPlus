@@ -28,7 +28,7 @@ export const redIcon = new L.Icon({
 // Map configuration options
 export const mapOptions = {
     center: [55.6761, 12.5683] as [number, number],
-    zoom: 4,
+    zoom: 0,
     minZoom: 2,
     maxBounds: [
         [-85, -180],

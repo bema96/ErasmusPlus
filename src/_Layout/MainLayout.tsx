@@ -4,14 +4,8 @@ import { FullscreenButton } from "../components/shared/FullscreenButton";
 const MainLayout = () => {
     return (
         <>
-        {/* Navigation */}
-        
-        {/* Fullscreen Button */}
-        <FullscreenButton />
-
+         <FullscreenButton />
          <Outlet />
-         
-        {/* Footer */}
         </>
     )
 }

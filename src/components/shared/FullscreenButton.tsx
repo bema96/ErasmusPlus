@@ -1,12 +1,11 @@
 import { useFullscreen } from '../../hooks/useFullscreen';
+import type { FullscreenButtonProps } from '../../types';
 
-interface FullscreenButtonProps {
-  className?: string;
-}
-
+// Button component for toggling fullscreen mode
 export function FullscreenButton({ className = '' }: FullscreenButtonProps) {
   const { isFullscreen, toggleFullscreen, isSupported } = useFullscreen();
 
+  // Don't render if browser doesn't support fullscreen
   if (!isSupported) {
     return null; 
   }
@@ -15,20 +14,19 @@ export function FullscreenButton({ className = '' }: FullscreenButtonProps) {
     <button
       onClick={toggleFullscreen}
       className={`
-        fixed top-6 right-8 z-50 
+        fixed top-7 right-8 z-[9999]
         bg-white hover:bg-gray-100 
-        border-2 border-gray-300 hover:border-gray-400
-        rounded-lg shadow-lg hover:shadow-xl
+        border-2 border-gray-100 hover:border-gray-400
+        rounded-lg hover:shadow-xl
         p-3 transition-all duration-200
-        focus:outline-none focus:ring-2 focus:ring-blue-500
         ${className}
       `}
       title={isFullscreen ? 'Exit Fullscreen (ESC)' : 'Enter Fullscreen'}
     >
       {isFullscreen ? (
-        // Exit fullscreen icon
+        // Exit fullscreen icon (X)
         <svg
-          className="w-5 h-5 text-gray-700"
+          className="w-4 h-4 text-gray-700"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -41,9 +39,9 @@ export function FullscreenButton({ className = '' }: FullscreenButtonProps) {
           />
         </svg>
       ) : (
-        // Enter fullscreen icon
+        // Enter fullscreen icon (expand)
         <svg
-          className="w-5 h-5 text-gray-700"
+          className="w-4 h-4 text-gray-700"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"

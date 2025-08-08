@@ -5,6 +5,7 @@ import { ChakraProvider } from '@chakra-ui/react'
 
 // App
 import App from './App.jsx'
+import './utils/i18n'
 
 // Styling imports
 import './index.css'

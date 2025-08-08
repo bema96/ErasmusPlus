@@ -2,6 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Global styles */
+:root {
+  height: 100%;
+  color: #6b7280; /* gray-500 */
+}
+
+html,
+body {
+  height: 100vh;
+  margin: 0;
+  padding: 1rem;
+}
+
+body {
+  overflow: hidden;
+  user-select: none;
+}
+
 /* Custom scrollbar for activity description */
 .activity-description-scroll {
   scroll-behavior: smooth;
@@ -12,35 +30,18 @@
 }
 
 .activity-description-scroll::-webkit-scrollbar-track {
-  background: rgba(229, 231, 235, 0.5);
+  background: rgba(229, 231, 235, 0.5); /* gray-200 with opacity */
   border-radius: 4px;
   margin: 8px 0;
 }
 
 .activity-description-scroll::-webkit-scrollbar-thumb {
-  background: rgba(66, 66, 66, 0.5);
+  background: rgba(66, 66, 66, 0.5); /* gray-700 with opacity */
   border-radius: 4px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-
-
-:root {
-height: 100%;
-color: grey;
-
-}
-
-html,
-body {
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-  padding: 1rem;
-}
-
-body {
-  overflow: hidden;
-  user-select: none;
+.activity-description-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(66, 66, 66, 0.8); /* Darker on hover */
 }
 

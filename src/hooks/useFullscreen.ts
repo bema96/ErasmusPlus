@@ -3,66 +3,40 @@ import { useState, useCallback, useEffect } from 'react';
 export function useFullscreen() {
   const [isFullscreen, setIsFullscreen] = useState(false);
 
-  // Check if fullscreen is supported
+  // Check if browser supports fullscreen API
   const isSupported = useCallback(() => {
-    return !!(
-      document.fullscreenEnabled ||
-      (document as any).webkitFullscreenEnabled ||
-      (document as any).mozFullScreenEnabled ||
-      (document as any).msFullscreenEnabled
-    );
+    return !!document.fullscreenEnabled;
   }, []);
 
-  // Toggle fullscreen
+  // Toggle between fullscreen and normal view
   const toggleFullscreen = useCallback(async () => {
     if (!isSupported()) return;
 
     try {
       if (!document.fullscreenElement) {
-        // Enter fullscreen
-        if (document.documentElement.requestFullscreen) {
-          await document.documentElement.requestFullscreen();
-        } else if ((document.documentElement as any).webkitRequestFullscreen) {
-          await (document.documentElement as any).webkitRequestFullscreen();
-        } else if ((document.documentElement as any).mozRequestFullScreen) {
-          await (document.documentElement as any).mozRequestFullScreen();
-        } else if ((document.documentElement as any).msRequestFullscreen) {
-          await (document.documentElement as any).msRequestFullscreen();
-        }
+        // Enter fullscreen mode
+        await document.documentElement.requestFullscreen();
       } else {
-        // Exit fullscreen
-        if (document.exitFullscreen) {
-          await document.exitFullscreen();
-        } else if ((document as any).webkitExitFullscreen) {
-          await (document as any).webkitExitFullscreen();
-        } else if ((document as any).mozCancelFullScreen) {
-          await (document as any).mozCancelFullScreen();
-        } else if ((document as any).msExitFullscreen) {
-          await (document as any).msExitFullscreen();
-        }
+        // Exit fullscreen mode
+        await document.exitFullscreen();
       }
     } catch (error) {
-      console.error('Error toggling fullscreen:', error);
+      console.error('Fullscreen error:', error);
     }
   }, [isSupported]);
 
-  // Listen for fullscreen changes
+  // Listen for fullscreen state changes
   useEffect(() => {
     const handleFullscreenChange = () => {
       setIsFullscreen(!!document.fullscreenElement);
     };
 
-    // Add event listeners for different browsers
+    // Add event listener for fullscreen changes
     document.addEventListener('fullscreenchange', handleFullscreenChange);
-    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
-    document.addEventListener('mozfullscreenchange', handleFullscreenChange);
-    document.addEventListener('MSFullscreenChange', handleFullscreenChange);
 
+    // Cleanup on component unmount
     return () => {
       document.removeEventListener('fullscreenchange', handleFullscreenChange);
-      document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
-      document.removeEventListener('mozfullscreenchange', handleFullscreenChange);
-      document.removeEventListener('MSFullscreenChange', handleFullscreenChange);
     };
   }, []);
 

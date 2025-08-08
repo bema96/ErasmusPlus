@@ -1,60 +1,66 @@
 import * as contentful from "contentful";
-import { useCallback, useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import { getLanguage } from '../utils/language';
 
-// Validate environment variables
-const SPACE_ID = import.meta.env.VITE_CONTENTFUL_SPACE;
-const ACCESS_TOKEN = import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN;
-
-if (!SPACE_ID || !ACCESS_TOKEN) {
-  console.error('Contentful environment variables are missing!');
-  console.error('Required: VITE_CONTENTFUL_SPACE and VITE_CONTENTFUL_ACCESS_TOKEN');
-}
-
+// Contentful client setup
 export const client = contentful.createClient({
-  space: SPACE_ID || '',
-  accessToken: ACCESS_TOKEN || '',
+  space: import.meta.env.VITE_CONTENTFUL_SPACE || '',
+  accessToken: import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN || '',
 });
 
-export function useContentful<type>(contentType: string) {
-  const [data, setData] = useState<type[]>([]);
+// Hook to fetch data from Contentful
+export function useContentful<T>(contentType: string) {
+  // State to hold data, loading and error
+  const [data, setData] = useState<T[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  // Function to fetch data (reusable)
   const fetchData = useCallback(() => {
-    // Check if Contentful is properly configured
-    if (!SPACE_ID || !ACCESS_TOKEN) {
-      setError('Contentful er ikke konfigureret korrekt. Kontakt administratoren.');
-      setLoading(false);
-      return;
-    }
-
+    // Start loading
     setLoading(true);
+    setError(null);
+
+    // Get current language
+    const currentLanguage = getLanguage();
+
+    // Fetch data from Contentful with language
     client.getEntries({ 
       content_type: contentType,
-      
+      locale: currentLanguage  // Use language from localStorage
     })
       .then((response) => {
-        const items = response.items.map((item: any) => ({
-          id: item.sys.id,
-          ...item.fields,
-          // Convert Contentful asset links to URLs
-          image: item.fields.image?.fields?.file?.url ? `https:${item.fields.image.fields.file.url}` : item.fields.image
-        }));
+        // Convert Contentful data to simple format
+        const items = response.items.map((item: any) => {
+          const imageField = item.fields.image;
+
+          return {
+            id: item.sys.id,
+            ...item.fields,
+            image: imageField?.fields?.file?.url
+              ? `https:${imageField.fields.file.url}`
+              : null,
+          };
+        });
+
+        // Save data and stop loading
         setData(items);
         setLoading(false);
-        setError(null);
       })
       .catch((err) => {
-        console.error('Contentful fetch error:', err);
-        setError('Fejl ved hentning af data fra Contentful');
+        // If there's an error
+        console.error('Error:', err);
+        setError('Could not fetch data');
         setLoading(false);
       });
-  }, [contentType]);
+  }, [contentType]); // Dependencies for useCallback
 
+  // Fetch data when component loads
   useEffect(() => {
     fetchData();
   }, [fetchData]);
 
+  // Return data, loading state, error and refetch function
   return { data, loading, error, refetch: fetchData };
-};
+}
 
