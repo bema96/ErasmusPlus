@@ -8,23 +8,30 @@ export const Home = () => {
   const { t } = useTranslation();
 
   return (
-        <div className="flex flex-col justify-center items-center min-h-screen px-4 pt-8 py-5">
-            {/* Page header with title */}
-            <div className="border-b-2 border-black flex w-full">
-              <h1 className="uppercase text-6xl font-bold pb-3">
-                { t('headline') }
-              </h1>
+        <div className="relative flex flex-col justify-center items-center min-h-screen px-4 mt-8">
+
+            <div className="w-full flex justify-between items-center">
+                {/* Page header with title */}
+                <div className="">
+                <h1 className="uppercase text-6xl font-bold pb-3">
+                    { t('headline') }
+                </h1>
+                </div>
+
+                <div className="absolute right-[200px]">
+                    {/* Language selector */}
+                    <div className="relative">
+                        <Language />
+                    </div>
+
+                    {/* Author information */}
+                    <div className="relative">
+                        <p>{ t('author') }</p>
+                    </div>
+                </div>
             </div>
 
-            {/* Language selector - top right */}
-            <div className="flex absolute right-[200px] top-5 w-[130px] text-left">
-                <Language />
-            </div>
-
-            {/* Author information - below language selector */}
-            <div className="inline-block absolute right-0 top-[60px] w-[330px] text-left">
-                <p>{ t('author') }</p>
-            </div>
+            <span className="w-full border-b-2 border-black"></span>
 
 
             {/* Main content grid - news and map side by side */}
