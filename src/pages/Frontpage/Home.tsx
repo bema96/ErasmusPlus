@@ -8,7 +8,7 @@ export const Home = () => {
   const { t } = useTranslation();
 
   return (
-        <div className="flex flex-col px-4 mt-[30px]">
+        <div className="max-h-screen flex flex-col px-4 mt-[30px]">
 
       
                 {/* Page header with title */}
@@ -38,7 +38,7 @@ export const Home = () => {
             <div className="home-page flex h-screen w-full pt-5">
 
                 {/* Left side - News section */}
-                <section className="news-section h-[85%] w-[800px] min-w-[350px]">
+                <section className="news-section h-[100%] w-[800px] min-w-[350px]">
                     <h2 className="text-2xl font-bold mb-3 pl-5 uppercase"
                     >
                     { t('news') }
@@ -48,7 +48,7 @@ export const Home = () => {
 
                 {/* Right side - World map section */}
                 <section className="map-section w-full h-screen flex justify-center">
-                    <div style={{ height:'87%', width: '100%' }}>
+                    <div style={{ height:'100%', width: '100%' }}>
                         <MapView />
                     </div>
                 </section>

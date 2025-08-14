@@ -1,10 +1,10 @@
 import { Outlet } from "react-router-dom";
-import { FullscreenButton } from "../components/shared/FullscreenButton";
+// import { FullscreenButton } from "../components/shared/FullscreenButton";
 
 const MainLayout = () => {
     return (
         <>
-         <FullscreenButton />
+         {/* <FullscreenButton /> */}
          <Outlet />
         </>
     )
