@@ -2,10 +2,12 @@ import { NewsArticle } from "../../components/NewsArticle/News";
 import { MapView } from "../../components/MapView/Map";
 import { Language } from "../../components/Language/language";
 import { useTranslation } from "react-i18next";
+import { useNews } from "../../hooks/useNewsArticles"; // Import hook
 
 
 export const Home = () => {
   const { t } = useTranslation();
+  useNews(); // Call hook without destructuring unused elements
 
   return (
         <div className="max-h-screen flex flex-col px-4 mt-[30px]">
@@ -39,10 +41,16 @@ export const Home = () => {
 
                 {/* Left side - News section */}
                 <section className="news-section h-[100%] w-[800px] min-w-[350px]">
-                    <h2 className="text-2xl font-bold mb-3 pl-5 uppercase"
-                    >
-                    { t('news') }
-                    </h2>
+                    <div className="flex items-center mb-3 pl-5">
+                      <h2 className="text-2xl font-bold uppercase">{ t('news') }</h2>
+                      <button
+                        className="ml-4 px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
+                        onClick={() => window.location.reload()}
+                        title="Refresh page"
+                      >
+                        Refresh
+                      </button>
+                    </div>
                     <NewsArticle />
                 </section>
 
